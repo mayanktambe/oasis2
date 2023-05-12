@@ -1,0 +1,39 @@
+//guessing number game using gui usecase
+
+import javax.swing.*;
+import java.awt.event.*;
+
+public class Main {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Guess the Number");
+        frame.setSize(300, 200);
+
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Enter a number between 1 and 100:");
+        JTextField textField = new JTextField(10);
+        JButton button = new JButton("Guess");
+        panel.add(label);
+        panel.add(textField);
+        panel.add(button);
+
+        int num = (int)(Math.random()*100) + 1;
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int choice = Integer.parseInt(textField.getText());
+                if(choice == num) {
+                    JOptionPane.showMessageDialog(frame, "You have guessed the number right!");
+                    System.exit(0);
+                }
+                else if(choice < num) {
+                    JOptionPane.showMessageDialog(frame, "Enter a bigger number!");
+                }
+                else {
+                    JOptionPane.showMessageDialog(frame, "Enter a smaller number!");
+                }
+            }
+        });
+
+        frame.add(panel);
+        frame.setVisible(true);
+    }
+}
